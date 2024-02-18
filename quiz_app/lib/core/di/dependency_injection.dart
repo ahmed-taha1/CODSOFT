@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:quiz_app/core/services/quizzes_service.dart';
+import '../../logic/quizzes_service.dart';
 
 final getIt = GetIt.instance;
 

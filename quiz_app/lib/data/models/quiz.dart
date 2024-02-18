@@ -1,4 +1,4 @@
-import 'package:quiz_app/core/data/models/question.dart';
+import 'package:quiz_app/data/models/question.dart';
 
 class Quiz{
   final String title;

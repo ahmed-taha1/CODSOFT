@@ -1,5 +1,5 @@
-import 'package:quiz_app/core/data/mock_data/quizes.dart';
-import 'package:quiz_app/core/data/models/question.dart';
+import '../data/mock_data/quizes.dart';
+import '../data/models/question.dart';
 
 class QuizzesService{
   int _quizNum = 0;
@@ -12,7 +12,7 @@ class QuizzesService{
     _currentQuestionIndex = 0;
     _answers = [];
   }
-  
+
   void saveAnswer(int answerIndex){
     _answers.add(answerIndex);
   }
@@ -26,11 +26,6 @@ class QuizzesService{
       return null;
     }
     return quizzes[_quizNum].questions[_currentQuestionIndex++];
-  }
-
-
-  int getNumOfQuestions(){
-    return quizzes[_quizNum].questions.length;
   }
 
   List<Question> getQuestions(){

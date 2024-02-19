@@ -1,3 +1,4 @@
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/di/dependency_injection.dart';
@@ -16,6 +17,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     final QuizzesService quizzesService = getIt<QuizzesService>();
     final List<String> quizzesTitles = quizzesService.getQuizzesTitles();
+    final controller = ScrollController();
 
     return Scaffold(
       body: Container(
@@ -25,44 +27,49 @@ class HomeView extends StatelessWidget {
             gradient: backGroundGradient,
           ),
           child: SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  verticalSpace(50),
-                  Image.asset(
-                    'assets/images/quiz-logo.png',
-                    color: Colors.white70,
-                    scale: 2.2,
-                  ),
-                  verticalSpace(40),
-                  Text(
-                    'Welcome please select a quiz to begin!',
-                    style: font30WhiteBold,
-                    textAlign: TextAlign.center,
-                  ),
-                  verticalSpace(50),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: quizzesTitles.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 2),
-                        child: CustomButton(
-                          text: quizzesTitles[index],
-                          onPressed: () {
-                            quizzesService.startQUiz(index);
-                            context.go(Routes.quizView.path);
-                          },
-                          textStyle: font30WhiteBold.copyWith(fontSize: 20),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+            child: FadingEdgeScrollView.fromSingleChildScrollView(
+              gradientFractionOnEnd: 0.2,
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                controller: controller,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    verticalSpace(50),
+                    Image.asset(
+                      'assets/images/quiz-logo.png',
+                      color: Colors.white70,
+                      scale: 2.2,
+                    ),
+                    verticalSpace(40),
+                    Text(
+                      'Welcome please select a quiz to begin!',
+                      style: font30WhiteBold,
+                      textAlign: TextAlign.center,
+                    ),
+                    verticalSpace(50),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: quizzesTitles.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2),
+                          child: CustomButton(
+                            text: quizzesTitles[index],
+                            onPressed: () {
+                              quizzesService.startQUiz(index);
+                              context.go(Routes.quizView.path);
+                            },
+                            textStyle: font30WhiteBold.copyWith(fontSize: 20),
+                          ),
+                        );
+                      },
+                    ),
+                    verticalSpace(30),
+                  ],
+                ),
               ),
             ),
           )),

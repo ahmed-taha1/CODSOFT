@@ -2,53 +2,73 @@ import '../../models/question.dart';
 
 final List<Question> englishQuestions = [
   Question(
-    questionText: "What is the plural of 'child'?",
+    questionText: "Which of the following sentences is grammatically correct?",
+    answersTxt: [
+      "She don't like pizza.",
+      "He have three cats.",
+      "They is going to the movies.",
+      "I am going to the store."
+    ],
+    answerIndex: 3,
+  ),
+  Question(
+    questionText: "What is the correct plural form of 'child'?",
     answersTxt: ["Childs", "Childrens", "Childs", "Children"],
     answerIndex: 3,
   ),
   Question(
-    questionText: "Who is the author of the play 'Romeo and Juliet'?",
-    answersTxt: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    questionText: "Which sentence contains a verb in the present perfect tense?",
+    answersTxt: [
+      "She will go to the store.",
+      "He is eating dinner.",
+      "They have finished their homework.",
+      "I walked to school yesterday."
+    ],
+    answerIndex: 2,
+  ),
+  Question(
+    questionText: "What is the comparative form of 'good'?",
+    answersTxt: ["Better", "Gooder", "Best", "Well"],
+    answerIndex: 0,
+  ),
+  Question(
+    questionText: "Which sentence uses 'there,' 'their,' or 'they're' correctly?",
+    answersTxt: [
+      "Their going to the movies.",
+      "There cat is black.",
+      "They're going to the store.",
+      "Their are five apples in the basket."
+    ],
+    answerIndex: 2,
+  ),
+  Question(
+    questionText: "What is the superlative form of 'far'?",
+    answersTxt: ["Farthest", "Farest", "Furthest", "Farrier"],
+    answerIndex: 0,
+  ),
+  Question(
+    questionText: "Which word is an example of a pronoun?",
+    answersTxt: ["Book", "House", "She", "Jump"],
+    answerIndex: 2,
+  ),
+  Question(
+    questionText: "What is the past participle of 'eat'?",
+    answersTxt: ["Eat", "Eaten", "Ate", "Eating"],
     answerIndex: 1,
   ),
   Question(
-    questionText: "What is the opposite of 'day'?",
-    answersTxt: ["Night", "Dawn", "Morning", "Noon"],
+    questionText: "Which sentence contains a preposition?",
+    answersTxt: [
+      "The cat is on the roof.",
+      "I like ice cream.",
+      "She is running fast.",
+      "He reads books."
+    ],
     answerIndex: 0,
   ),
   Question(
-    questionText: "Which of the following is a synonym for 'happy'?",
-    answersTxt: ["Sad", "Angry", "Joyful", "Fearful"],
-    answerIndex: 2,
-  ),
-  Question(
-    questionText: "What is the capital of France?",
-    answersTxt: ["Berlin", "London", "Paris", "Madrid"],
-    answerIndex: 2,
-  ),
-  Question(
-    questionText: "Who painted the Mona Lisa?",
-    answersTxt: ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Michelangelo"],
-    answerIndex: 0,
-  ),
-  Question(
-    questionText: "Which planet is known as the Red Planet?",
-    answersTxt: ["Mars", "Venus", "Jupiter", "Mercury"],
-    answerIndex: 0,
-  ),
-  Question(
-    questionText: "What is the chemical symbol for water?",
-    answersTxt: ["W", "H2O", "O2", "CO2"],
-    answerIndex: 1,
-  ),
-  Question(
-    questionText: "What is the largest mammal?",
-    answersTxt: ["Elephant", "Giraffe", "Blue Whale", "Hippopotamus"],
-    answerIndex: 2,
-  ),
-  Question(
-    questionText: "What is the tallest mountain in the world?",
-    answersTxt: ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "Mount McKinley"],
+    questionText: "What is the correct form of the verb in this sentence: 'I _____ to the store.'",
+    answersTxt: ["Gone", "Went", "Go", "Goes"],
     answerIndex: 1,
   ),
 ];

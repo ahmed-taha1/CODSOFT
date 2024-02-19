@@ -18,6 +18,7 @@ class QuizView extends StatefulWidget {
 class _QuizViewState extends State<QuizView> {
   List<Question> questions = getIt<QuizzesService>().getQuestions();
   int currQuestionIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     List<String> answers = questions[currQuestionIndex].answersTxt;
@@ -45,18 +46,21 @@ class _QuizViewState extends State<QuizView> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: CustomButton(
-                            text: answers[index],
-                            onPressed: () {
-                              getIt<QuizzesService>().saveAnswer(index);
-                              setState(() {
-                                currQuestionIndex++;
-                                if(currQuestionIndex >= questions.length){
-                                  context.go(Routes.resultView.path);
-                                }
-                              });
-                            }));
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: CustomButton(
+                        text: answers[index],
+                        onPressed: () {
+                          getIt<QuizzesService>().saveAnswer(index);
+                          if (currQuestionIndex + 1 >= questions.length) {
+                            context.go(Routes.resultView.path);
+                            return;
+                          }
+                          setState(() {
+                            currQuestionIndex++;
+                          });
+                        },
+                      ),
+                    );
                   },
                   itemCount: questions[currQuestionIndex].answersTxt.length,
                 ),

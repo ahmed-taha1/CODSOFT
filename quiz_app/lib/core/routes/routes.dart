@@ -1,7 +1,7 @@
 enum Routes {
   homePage("/"),
   quizView("/quiz-page"),
-  summaryView("/summary-page");
+  resultView("/result-page");
 
   final String path;
 

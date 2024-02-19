@@ -32,11 +32,11 @@ class QuizzesService{
     return quizzes[_quizNum].questions;
   }
 
-  List<int> getAnswers(){
+  List<int> getUserAnswers(){
     return _answers;
   }
 
-  int getPoints(){
+  int getNumOfCorrectAnswers(){
     int points = 0;
     for (int i = 0; i < quizzes[_quizNum].questions.length; i++) {
       points += (_answers[i] == quizzes[_quizNum].questions[i].answerIndex) ? 1 : 0;

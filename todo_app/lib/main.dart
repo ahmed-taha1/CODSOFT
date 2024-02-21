@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_app/ui/pages/notification_screen.dart';
+import 'package:todo_app/logic/services/theme_services.dart';
+import 'package:todo_app/ui/size_config.dart';
+import 'package:todo_app/ui/theme.dart';
 import 'ui/pages/home_page.dart';
 
 void main() {
@@ -14,12 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: Colors.teal,
-        backgroundColor: Colors.teal,
-      ),
+      theme: Themes.light,
+      darkTheme: Themes.dark,
+      themeMode: ThemeServices().theme,
       debugShowCheckedModeBanner: false,
-      home: const NotificationScreen(payload: 'string'),
+      home: const HomePage(),
     );
   }
 }

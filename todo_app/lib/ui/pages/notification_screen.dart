@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:todo_app/helpers/spacing.dart';
 
 import '../theme.dart';
+import '../widgets/notification_view_widgets/notification_box.dart';
+import '../widgets/notification_view_widgets/notification_top_text.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key, required this.payload}) : super(key: key);
@@ -25,61 +27,29 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios),
         ),
         elevation: 0,
         backgroundColor: context.theme.backgroundColor,
+        centerTitle: true,
         title: Text(_payload.toString().split('|')[0],
             style:
-                TextStyle(color: Get.isDarkMode ? Colors.white : darkGreyClr)),
+                TextStyle(color: Get.isDarkMode ? Colors.white : darkGreyClr, fontSize: 20)),
       ),
       body: SafeArea(
         child: Column(
           children: [
             verticalSpace(20),
-            Column(
-              children: [
-                Text(
-                  "hello, Ahmed",
-                  style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w900,
-                      color: Get.isDarkMode ? Colors.white : darkGreyClr),
-                ),
-                verticalSpace(10),
-                Text(
-                  "You have new reminder",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                      color: Get.isDarkMode ? Colors.grey[100] : darkGreyClr),
-                ),
-              ],
-            ),
+            NotificationTopText(),
             verticalSpace(10),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                margin: const EdgeInsets.symmetric(horizontal: 30),
-                decoration: BoxDecoration(
-                  color: primaryClr,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const Row (
-                        children: [
-                        ],
-                      ),
-                      verticalSpace(20)
-                    ],
-                  ),
-                ),
-              ),
+            const NotificationBox(
+              title: 'payLoad[0]',
+              description: 'payLoad[1]',
+              date: 'payLoad[2]',
             ),
             verticalSpace(10),
           ],

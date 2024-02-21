@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_app/ui/size_config.dart';
-import 'package:todo_app/ui/theme.dart';
+import 'package:todo_app/helpers/size_config.dart';
+import 'package:todo_app/theming/theme.dart';
 
 class InputField extends StatelessWidget {
   const InputField(

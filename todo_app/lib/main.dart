@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_app/logic/services/theme_services.dart';
-import 'package:todo_app/ui/size_config.dart';
-import 'package:todo_app/ui/theme.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:todo_app/data/db/db_helper.dart';
+import 'package:todo_app/logic/services/notification_services.dart';
+import 'package:todo_app/theming/theme.dart';
+import 'logic/services/theme_services.dart';
 import 'ui/pages/home_page.dart';
 
-void main() {
+// late NotifyHelper notifyHelper;
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await DBHelper.initDb();
+  await GetStorage.init();
+
+  // notifyHelper = NotifyHelper();
+  // notifyHelper.initializeNotification();
   runApp(const MyApp());
 }
 

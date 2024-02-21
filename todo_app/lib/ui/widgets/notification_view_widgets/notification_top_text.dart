@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../helpers/spacing.dart';
-import '../../theme.dart';
+import '../../../theming/theme.dart';
 
 class NotificationTopText extends StatelessWidget {
   NotificationTopText({

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../helpers/spacing.dart';
-import '../../theme.dart';
+import '../../../theming/theme.dart';
 
 class AddTaskViewAppBar extends StatefulWidget implements PreferredSizeWidget {
   const AddTaskViewAppBar({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../helpers/spacing.dart';
-import '../../theme.dart';
+import '../../../theming/theme.dart';
 
 class NotificationBox extends StatelessWidget {
   const NotificationBox({

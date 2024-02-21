@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/logic/controllers/task_controller.dart';
-import 'package:todo_app/ui/theme.dart';
+import 'package:todo_app/theming/theme.dart';
 import 'package:todo_app/ui/widgets/button.dart';
 
-import '../../pages/add_task_page.dart';
+import '../../../pages/add_task_page.dart';
 
-class HomeTaskBar extends StatelessWidget {
-  HomeTaskBar({super.key});
+class HomeTopBar extends StatelessWidget {
+  HomeTopBar({super.key});
 
   final TaskController _taskController = Get.put(TaskController());
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/ui/theme.dart';
+import 'package:todo_app/theming/theme.dart';
 
 class MyButton extends StatelessWidget {
   const MyButton({Key? key, required this.label, required this.onTap})

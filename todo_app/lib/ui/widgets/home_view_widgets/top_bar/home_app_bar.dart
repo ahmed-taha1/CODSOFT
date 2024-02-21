@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/helpers/spacing.dart';
-import 'package:todo_app/ui/theme.dart';
+import 'package:todo_app/theming/theme.dart';
 
-import '../../../logic/services/theme_services.dart';
+import '../../../../logic/services/theme_services.dart';
 
 AppBar customAppBar(BuildContext context, {String? title, IconButton? leading}) {
   return AppBar(

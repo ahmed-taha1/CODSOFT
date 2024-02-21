@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/helpers/spacing.dart';
 
-import '../theme.dart';
+import '../../theming/theme.dart';
 import '../widgets/notification_view_widgets/notification_box.dart';
 import '../widgets/notification_view_widgets/notification_top_text.dart';
 

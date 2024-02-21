@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/helpers/spacing.dart';
-import 'package:todo_app/ui/theme.dart';
+import 'package:todo_app/theming/theme.dart';
+import 'package:todo_app/ui/widgets/add_task_view_widgets/get_date_from_user.dart';
+import 'package:todo_app/ui/widgets/add_task_view_widgets/get_time_from_user.dart';
 import 'package:todo_app/ui/widgets/button.dart';
 import 'package:todo_app/ui/widgets/input_field.dart';
+import '../../data/models/task.dart';
 import '../../logic/controllers/task_controller.dart';
 import '../widgets/add_task_view_widgets/add_task_view_app_bar.dart';
-import '../widgets/home_view_widgets/home_app_bar.dart';
 import '../widgets/add_task_view_widgets/colors_selection.dart';
 
 class AddTaskPage extends StatefulWidget {
@@ -25,8 +27,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
   DateTime _selectedDate = DateTime.now();
   String _startTime = DateFormat('hh:mm a').format(DateTime.now()).toString();
   String _endTime = DateFormat('hh:mm a')
-      .format(DateTime.now().add(const Duration(minutes: 15)))
-      .toString();
+      .format(DateTime.now().add(const Duration(minutes: 15)));
   int _selectedRemind = 5;
   List<int> remindList = [5, 10, 15, 20];
   String _selectedRepeat = 'None';
@@ -58,42 +59,65 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 title: 'Date',
                 hint: DateFormat.yMd().format(_selectedDate),
                 widget: IconButton(
-                  onPressed: () {},
+                  onPressed: () async{
+                    DateTime? date = await getDateFromUser(context, _selectedDate);
+                    if (date != null) {
+                      setState(() {
+                        _selectedDate = date;
+                      });
+                    }
+                  },
                   icon: const Icon(
                     Icons.calendar_today_outlined,
                     color: Colors.grey,
                   ),
                 ),
               ),
-              Row(children: [
-                Expanded(
-                  child: InputField(
-                    title: 'Start Time',
-                    hint: _startTime,
-                    widget: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.access_time,
-                        color: Colors.grey,
+              Row(
+                children: [
+                  Expanded(
+                    child: InputField(
+                      title: 'Start Time',
+                      hint: _startTime,
+                      widget: IconButton(
+                        onPressed: () async{
+                          String? time = await getTimeFromUser(context, initialTime: _startTime);
+                          if (time != null) {
+                            setState(() {
+                              _startTime = time;
+                            });
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.access_time,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                horizontalSpacing(12),
-                Expanded(
-                  child: InputField(
-                    title: 'End Time',
-                    hint: _endTime,
-                    widget: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.access_time,
-                        color: Colors.grey,
+                  horizontalSpacing(12),
+                  Expanded(
+                    child: InputField(
+                      title: 'End Time',
+                      hint: _endTime,
+                      widget: IconButton(
+                        onPressed: () async{
+                          String? time = await getTimeFromUser(context, initialTime: _endTime);
+                          if (time != null) {
+                            setState(() {
+                              _endTime = time;
+                            });
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.access_time,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ]),
+                ],
+              ),
               InputField(
                 title: 'Remind',
                 hint: '$_selectedRemind minutes early',
@@ -178,8 +202,37 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   ColorsSelection(selectedColor: _selectedColor),
                   MyButton(
                     label: 'Create Task',
-                    onTap: () {
-                      Get.back();
+                    onTap: () async {
+                      var result = await _taskController.addTask(
+                        taskAttr: Map<String, dynamic>.from(
+                          {
+                            'title': _titleController.text,
+                            'note': _noteController.text,
+                            'date': DateFormat.yMd().format(_selectedDate),
+                            'startTime': _startTime,
+                            'endTime': _endTime,
+                            'remind': _selectedRemind,
+                            'repeat': _selectedRepeat,
+                            'color': _selectedColor,
+                          },
+                        ),
+                      );
+                      if (result == -1) {
+                        Get.snackbar(
+                          'required',
+                          'All fields are required!',
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                          icon: const Icon(
+                            Icons.warning,
+                            color: Colors.white,
+                          ),
+                        );
+                      }
+                      else {
+                        Get.back();
+                      }
                     },
                   ),
                 ],

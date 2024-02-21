@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/helpers/spacing.dart';
 
-import '../../theme.dart';
+import '../../../theming/theme.dart';
 
 class ColorsSelection extends StatefulWidget {
   ColorsSelection({

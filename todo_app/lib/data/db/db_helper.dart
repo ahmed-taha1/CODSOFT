@@ -54,4 +54,13 @@ class DBHelper {
   static Future<List<Map<String, dynamic>>> query() async{
     return await _db!.query(_tableName);
   }
+
+  static Future<int> update(Task task) async{
+    return await _db!.update(
+      _tableName,
+      task.toJson(),
+      where: 'id = ?',
+      whereArgs: [task.id],
+    );
+  }
 }

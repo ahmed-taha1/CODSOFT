@@ -6,18 +6,32 @@ import 'package:todo_app/helpers/size_config.dart';
 import 'package:todo_app/ui/widgets/home_view_widgets/top_bar/home_app_bar.dart';
 import 'package:todo_app/ui/widgets/home_view_widgets/top_bar/home_top_bar.dart';
 import 'package:todo_app/ui/widgets/home_view_widgets/home_tasks.dart';
-
 import '../widgets/home_view_widgets/top_bar/home_date_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  // final TaskController _taskController = Get.put(TaskController());
+  DateTime _selectedDate = DateTime.now();
+
+  final TaskController _taskController = Get.put(TaskController());
+
+  @override
+  void initState() {
+    super.initState();
+    _taskController.getTasks();
+  }
+
+  void _updateSelectedDate(DateTime date) {
+    setState(() {
+      _selectedDate = date; // Update selectedDate
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +42,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           HomeTopBar(),
-          HomeDateBar(),
+          HomeDateBar(onDateSelected: _updateSelectedDate),
           verticalSpace(8),
-          HomeTasks(),
+          HomeTasks(selectedDate: _selectedDate),
         ],
       ),
     );

@@ -12,6 +12,7 @@ class HomeTopBar extends StatelessWidget {
   HomeTopBar({super.key});
 
   final TaskController _taskController = Get.put(TaskController());
+
   @override
   Widget build(BuildContext context) {
     return Container(

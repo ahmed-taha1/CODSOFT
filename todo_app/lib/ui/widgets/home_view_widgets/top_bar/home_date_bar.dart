@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/theming/theme.dart';
 
 class HomeDateBar extends StatelessWidget {
-  const HomeDateBar({super.key});
+  HomeDateBar({super.key, required this.onDateSelected});
+
+  final Function(DateTime) onDateSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +40,9 @@ class HomeDateBar extends StatelessWidget {
             color: Colors.grey,
           ),
         ),
-
         onDateChange: (date) {
-          // setState(() { _selectedValue = date; });
-        }
+          onDateSelected(date);
+        },
       ),
     );
   }

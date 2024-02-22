@@ -63,4 +63,8 @@ class DBHelper {
       whereArgs: [task.id],
     );
   }
+
+  static Future<void> deleteAll() async{
+    await _db!.delete(_tableName);
+  }
 }

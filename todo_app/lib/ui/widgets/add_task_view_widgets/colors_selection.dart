@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/helpers/spacing.dart';
+import 'package:todo_app/ui/pages/add_task_page.dart';
+import 'package:todo_app/ui/pages/home_page.dart';
 
 import '../../../theming/theme.dart';
 
 class ColorsSelection extends StatefulWidget {
-  ColorsSelection({
-    super.key, required this.selectedColor,
+  const ColorsSelection({
+    super.key,
   });
-
-  int selectedColor;
 
   @override
   State<ColorsSelection> createState() => _ColorsSelectionState();
@@ -29,7 +29,7 @@ class _ColorsSelectionState extends State<ColorsSelection> {
             (index) => GestureDetector(
               onTap: () {
                 setState(() {
-                  widget.selectedColor = index;
+                  AddTaskPage.selectedColor = index;
                 });
               },
               child: Padding(
@@ -41,11 +41,13 @@ class _ColorsSelectionState extends State<ColorsSelection> {
                           ? pinkClr
                           : orangeClr,
                   radius: 14,
-                  child: widget.selectedColor == index ? const Icon(
-                    Icons.done,
-                    size: 16,
-                    color: Colors.white,
-                  ) : null,
+                  child: AddTaskPage.selectedColor == index
+                      ? const Icon(
+                          Icons.done,
+                          size: 16,
+                          color: Colors.white,
+                        )
+                      : null,
                 ),
               ),
             ),

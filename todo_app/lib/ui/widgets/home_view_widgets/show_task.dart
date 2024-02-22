@@ -15,7 +15,7 @@ class ShowTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimationConfiguration.staggeredList(
       position: index,
-      duration: const Duration(milliseconds: 1375),
+      duration: const Duration(milliseconds: 500),
       child: SlideAnimation(
         horizontalOffset: 300,
         child: FadeInAnimation(

@@ -15,8 +15,12 @@ class TaskController extends GetxController {
       return -1;
     }
     Task task = Task.fromMap(taskAttr);
+    int id = await DBHelper.insert(task);
+    task.id = id;
+
     taskList.add(task);
-    return await DBHelper.insert(task);
+
+    return id;
   }
 
   Future<int> deleteTask({required int id}) async{
@@ -24,8 +28,14 @@ class TaskController extends GetxController {
     return await DBHelper.delete(id);
   }
 
-  Future<void> updateTask({required Task task}) async{
-    taskList[taskList.indexWhere((element) => element.id == task.id)] = task;
+  Future<void> taskCompleted({required int id}) async{
+    Task task = taskList[taskList.indexWhere((element) => element.id == id)];
+    task.isCompleted = 1;
     await DBHelper.update(task);
+  }
+
+  Future<void> deleteAllTasks() async{
+    taskList.clear();
+    await DBHelper.deleteAll();
   }
 }

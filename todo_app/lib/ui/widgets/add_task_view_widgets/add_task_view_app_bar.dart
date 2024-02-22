@@ -12,7 +12,7 @@ class AddTaskViewAppBar extends StatefulWidget implements PreferredSizeWidget {
   State<AddTaskViewAppBar> createState() => _HomeAppBarState();
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 class _HomeAppBarState extends State<AddTaskViewAppBar> {

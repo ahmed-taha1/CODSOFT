@@ -27,7 +27,7 @@ class _HomeTasksState extends State<HomeTasks> {
       child: Obx(
         () {
           if (_taskController.taskList.isEmpty) {
-            return const NoTaskMessage();
+            return NoTaskMessage();
           } else {
             return ListView.builder(
               scrollDirection: SizeConfig.orientation == Orientation.portrait

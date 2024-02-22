@@ -7,13 +7,14 @@ import 'package:todo_app/ui/widgets/add_task_view_widgets/get_date_from_user.dar
 import 'package:todo_app/ui/widgets/add_task_view_widgets/get_time_from_user.dart';
 import 'package:todo_app/ui/widgets/button.dart';
 import 'package:todo_app/ui/widgets/input_field.dart';
-import '../../data/models/task.dart';
 import '../../logic/controllers/task_controller.dart';
 import '../widgets/add_task_view_widgets/add_task_view_app_bar.dart';
 import '../widgets/add_task_view_widgets/colors_selection.dart';
 
 class AddTaskPage extends StatefulWidget {
   const AddTaskPage({Key? key}) : super(key: key);
+
+  static int selectedColor = 0;
 
   @override
   State<AddTaskPage> createState() => _AddTaskPageState();
@@ -31,14 +32,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
   int _selectedRemind = 5;
   List<int> remindList = [5, 10, 15, 20];
   String _selectedRepeat = 'None';
-  int _selectedColor = 0;
   List<String> repeatList = ['None', 'Daily', 'Weekly', 'Monthly', 'Yearly'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.theme.backgroundColor,
-      appBar: AddTaskViewAppBar(),
+      appBar: const AddTaskViewAppBar(),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
@@ -158,7 +158,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               ),
               InputField(
                 title: 'Repeat',
-                hint: '$_selectedRepeat',
+                hint: _selectedRepeat,
                 widget: Row(
                   children: [
                     DropdownButton(
@@ -199,7 +199,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ColorsSelection(selectedColor: _selectedColor),
+                  ColorsSelection(),
                   MyButton(
                     label: 'Create Task',
                     onTap: () async {
@@ -213,7 +213,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
                             'endTime': _endTime,
                             'remind': _selectedRemind,
                             'repeat': _selectedRepeat,
-                            'color': _selectedColor,
+                            'color': AddTaskPage.selectedColor,
+                            'isCompleted': 0,
                           },
                         ),
                       );

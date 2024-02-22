@@ -3,16 +3,19 @@ import 'package:get/get.dart';
 import 'package:todo_app/helpers/spacing.dart';
 import 'package:todo_app/theming/theme.dart';
 
+import '../../../../logic/controllers/task_controller.dart';
 import '../../../../logic/services/theme_services.dart';
 
-AppBar customAppBar(BuildContext context, {String? title, IconButton? leading}) {
+AppBar customAppBar(BuildContext context,
+    {String? title, IconButton? leading}) {
   return AppBar(
     elevation: 0,
     backgroundColor: Colors.transparent,
-    leading: leading ?? IconButton(
-      icon: Icon(Icons.arrow_back_ios, color: primaryClr, size: 24),
-      onPressed: () => Get.back(),
-    ),
+    leading: leading ??
+        IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: primaryClr, size: 24),
+          onPressed: () => Get.back(),
+        ),
     actions: [
       const CircleAvatar(
         backgroundImage: AssetImage('images/person.jpeg'),
@@ -50,6 +53,14 @@ class _HomeAppBarState extends State<HomeAppBar> {
         },
       ),
       actions: [
+        IconButton(
+          onPressed: () {
+            Get.put(TaskController()).deleteAllTasks();
+            Get.back();
+          },
+          icon: Icon(Icons.cleaning_services_outlined,
+              size: 24, color: Get.isDarkMode ? Colors.white : darkGreyClr),
+        ),
         const CircleAvatar(
           backgroundImage: AssetImage('images/person.jpeg'),
           radius: 20,

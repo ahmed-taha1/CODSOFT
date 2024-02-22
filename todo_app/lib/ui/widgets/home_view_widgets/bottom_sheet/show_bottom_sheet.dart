@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app/helpers/size_config.dart';
 import 'package:todo_app/helpers/spacing.dart';
+import 'package:todo_app/logic/controllers/task_controller.dart';
 import 'package:todo_app/theming/theme.dart';
 import 'package:todo_app/ui/widgets/home_view_widgets/bottom_sheet/bottom_sheet_option.dart';
 
 import '../../../../data/models/task.dart';
 
 ShowBottomSheet(BuildContext context, Task task) {
+  final TaskController _taskController = Get.put(TaskController());
+
   Get.bottomSheet(SingleChildScrollView(
     child: Container(
-      padding: EdgeInsets.only(top: 4),
+      padding: const EdgeInsets.only(top: 4),
       width: SizeConfig.screenWidth,
       height: (SizeConfig.orientation == Orientation.landscape)
           ? (task.isCompleted == 1
@@ -38,11 +41,21 @@ ShowBottomSheet(BuildContext context, Task task) {
               : BottomSheetOption(
                   label: 'Task Completed',
                   onTap: () {
+                    if (task.id != null) {
+                      _taskController.taskCompleted(id: task.id!);
+                    }
                     Get.back();
                   },
                   color: primaryClr),
           BottomSheetOption(
-              label: 'delete Task', onTap: () {}, color: primaryClr),
+              label: 'delete Task',
+              onTap: () {
+                if (task.id != null) {
+                  _taskController.deleteTask(id: task.id!);
+                }
+                Get.back();
+              },
+              color: primaryClr),
           Divider(color: Get.isDarkMode ? Colors.grey : darkGreyClr),
           BottomSheetOption(
             label: 'Cancel',
